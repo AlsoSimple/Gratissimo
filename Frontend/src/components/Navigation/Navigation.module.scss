@@ -1,0 +1,69 @@
+@use '../../style/Globals' as *;
+
+.navigation {
+  background-color: $accent;
+  color: $white;
+  height: 80px;
+  padding: 0 8%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: $font-secondary;
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+
+.links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.link {
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &.active {
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+}
+
+.userLinks {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+
+  li {
+    border-left: 1px solid $white;
+  }
+
+  li:first-child {
+    border-left: none;
+  }
+}
+
+.userLink {
+  display: block;
+  padding: 0.25rem 1.25rem;
+  font-weight: 700;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+// Mobile
+@media (max-width: 800px) {
+  .navigation {
+    display: none;
+  }
+}
