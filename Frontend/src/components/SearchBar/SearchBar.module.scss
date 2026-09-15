@@ -84,10 +84,9 @@
   }
 }
 
-// sits on top of the select's right edge
 .chevron {
   width: 14px;
-  margin-left: -3.4rem;
+  margin-left: -3.4rem; // Moves it left to sit on right edge of border
   margin-right: 2.25rem;
   opacity: 0.5;
   pointer-events: none;

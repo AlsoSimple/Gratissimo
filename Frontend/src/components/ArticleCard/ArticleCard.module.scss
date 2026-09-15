@@ -1,0 +1,42 @@
+@use '../../style/Globals' as *;
+
+.card {
+  display: block;
+  height: 100%;
+  background-color: #ffffff;
+  border: 1px solid rgba($black, 0.3);
+  box-shadow: 0 0 0 1px rgba($black, 0.3); // outer 1px ring
+  border-radius: 10px;
+  overflow: hidden;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.image {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-bottom: 1px solid rgba($black, 0.3);
+  box-shadow: 0 1px 0 rgba($black, 0.3);
+}
+
+.caption {
+  padding: 1rem 1.25rem 1rem 1rem;
+}
+
+.meta {
+  display: block;
+  color: $main;
+  font-weight: 400;
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.title {
+  font-family: $font-primary;
+  font-weight: 400;
+  font-size: 1.25rem;
+}

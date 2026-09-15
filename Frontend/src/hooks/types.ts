@@ -32,3 +32,19 @@ export interface JobListing {
   workType: WorkType;
   jobCategory: JobCategory;
 }
+
+export interface Article {
+  id: number;
+  createdAt: string;
+  title: string;
+  content: string;
+  author: string;
+  imageUrl: string;
+}
+
+export interface Testimony {
+  id: number;
+  name: string;
+  title: string;
+  content: string;
+}

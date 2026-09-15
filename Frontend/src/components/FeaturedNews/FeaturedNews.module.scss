@@ -1,8 +1,7 @@
 @use '../../style/Globals' as *;
 
-.page {
-  background-color: $alt-white;
-  padding: 3rem 8% 4rem;
+.section {
+  padding: 2rem 8% 4rem;
 }
 
 .title {
@@ -22,7 +21,7 @@
 
 // Mobile
 @media (max-width: 800px) {
-  .page {
+  .section {
     padding: 2rem 1.5rem 3rem;
   }
 
