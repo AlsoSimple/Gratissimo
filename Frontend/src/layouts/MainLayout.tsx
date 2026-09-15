@@ -1,12 +1,13 @@
 import { Outlet } from 'react-router-dom';
 import { Header } from '../components/Header/Header';
 import { Navigation } from '../components/Navigation/Navigation';
+import { LoginCTA } from '../components/LoginCTA/LoginCTA';
 import { Footer } from '../components/Footer/Footer';
 import styles from './MainLayout.module.scss';
 
 // Define navlinks
 const navLinks = [
-  { to: '/jobs', label: 'Alle Jobs' },
+  { to: '/', label: 'Alle Jobs', end: true },
   { to: '/create-job', label: 'Opret annonce' },
   { to: '/news', label: 'Nyheder' },
 ];
@@ -22,6 +23,7 @@ export function MainLayout() {
     <div className={styles.wrapper}>
       <Header navLinks={navLinks} userLinks={userLinks} />
       <Navigation navLinks={navLinks} userLinks={userLinks} />
+      <LoginCTA />
 
       <main className={styles.main}>
         <Outlet />

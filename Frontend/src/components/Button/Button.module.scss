@@ -1,0 +1,18 @@
+@use '../../style/Globals' as *;
+
+.button {
+  background-color: $accent;
+  color: $white;
+  border: none;
+  border-radius: 20px;
+  padding: 0.6rem 2rem;
+  font-family: $font-primary;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}

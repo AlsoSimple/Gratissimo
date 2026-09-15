@@ -4,6 +4,7 @@ import styles from './Navigation.module.scss';
 interface NavLinkItem {
   to: string;
   label: string;
+  end?: boolean;
 }
 
 interface NavigationProps {
@@ -19,6 +20,7 @@ export const Navigation = ({ navLinks, userLinks }: NavigationProps) => {
           <li key={link.label}>
             <NavLink
               to={link.to}
+              end={link.end}
               className={({ isActive }) =>
                 isActive ? `${styles.link} ${styles.active}` : styles.link
               }
