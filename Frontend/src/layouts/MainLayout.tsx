@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { Header } from '../components/Header/Header';
 import { Navigation } from '../components/Navigation/Navigation';
@@ -17,22 +17,16 @@ const navLinks = [
 // Main layout wrapper
 export function MainLayout() {
   const location = useLocation();
-  const navigate = useNavigate();
   const { user, logout } = useContext(AuthContext);
 
   // no cta on the login pages
   const isLoginPage = location.pathname === '/login' || location.pathname === '/register';
 
-  const handleLogout = async () => {
-    await logout();
-    navigate('/login');
-  };
-
   // "Min side" and "Log ud" if logged in
   const userLinks = user
     ? [
         { to: '/profile', label: 'Min side' },
-        { label: 'Log ud', onClick: handleLogout },
+        { label: 'Log ud', onClick: logout },
       ]
     : [
         { to: '/register', label: 'Opret Profil' },

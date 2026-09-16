@@ -14,3 +14,8 @@ export function isStrongPassword(value: string): boolean {
 export function isPhone(value: string): boolean {
   return /^\d{8}$/.test(value);
 }
+
+// zipcode regex
+export function isZipcode(value: string): boolean {
+  return /^\d{4}$/.test(value);
+}

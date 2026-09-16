@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import type { FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
-import { isEmail, isStrongPassword, isPhone } from '../../utils/validation';
+import { isEmail, isStrongPassword, isPhone, isZipcode } from '../../utils/validation';
 import { Button } from '../Button/Button';
 import styles from './RegisterForm.module.scss';
 
@@ -22,6 +22,8 @@ export const RegisterForm = () => {
     const firstname = String(formData.get('firstname'));
     const lastname = String(formData.get('lastname'));
     const phone = String(formData.get('phone'));
+    const zipcode = String(formData.get('zipcode'));
+    const city = String(formData.get('city'));
 
     if (!email) {
       setError('Intast email');
@@ -51,10 +53,18 @@ export const RegisterForm = () => {
       setError('Telefon nummer skal være 8 cifre');
       return;
     }
+    if (!isZipcode(zipcode)) {
+      setError('Postnummer skal være 4 cifre');
+      return;
+    }
+    if (!city) {
+      setError('Skriv din by');
+      return;
+    }
 
     try {
-      await register({ email, password, firstname, lastname, phone: Number(phone) });
-      navigate('/');
+      await register({ email, password, firstname, lastname, phone: Number(phone), zipcode: Number(zipcode), city });
+      navigate('/profile');
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
@@ -94,6 +104,16 @@ export const RegisterForm = () => {
       <label className={styles.field}>
         Telefon nummer
         <input type="tel" name="phone" placeholder="Skriv dit telefon nummer..." className={styles.input} />
+      </label>
+
+      <label className={styles.field}>
+        Postnummer
+        <input type="text" name="zipcode" placeholder="Skriv dit postnummer..." className={styles.input} />
+      </label>
+
+      <label className={styles.field}>
+        By
+        <input type="text" name="city" placeholder="Skriv din by..." className={styles.input} />
       </label>
 
       {error && <p className={styles.error}>{error}</p>}

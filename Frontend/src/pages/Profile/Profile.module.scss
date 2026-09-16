@@ -1,0 +1,60 @@
+@use '../../style/Globals' as *;
+
+.links {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: $main;
+  font-family: $font-primary;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.page {
+  padding: 3rem 8% 4rem;
+}
+
+.tabs {
+  display: flex;
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  border: 1px solid rgba($black, 0.2);
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.tab {
+  flex: 1;
+  padding: 0.75rem;
+  background-color: $alt-white;
+  border: none;
+  font-family: $font-secondary;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.active {
+  background-color: $accent;
+  color: $white;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+// Mobile
+@media (max-width: 800px) {
+  .page {
+    padding: 2rem 1.5rem 3rem;
+  }
+
+  .tab {
+    font-size: 1rem;
+    padding: 0.6rem 0.5rem;
+  }
+}

@@ -1,6 +1,6 @@
 @use '../../style/Globals' as *;
 
-.form {
+.bar {
   display: flex;
   height: 48px;
   max-width: 340px;
@@ -61,4 +61,10 @@
   &:hover {
     opacity: 0.9;
   }
+}
+
+.message {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
 }

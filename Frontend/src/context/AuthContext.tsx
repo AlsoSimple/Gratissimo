@@ -1,5 +1,6 @@
 import { createContext, useState } from 'react';
 import type { ReactNode } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import type { User, LoginResponse } from '../hooks/types';
 import { API_URL } from '../utils/api';
@@ -10,6 +11,8 @@ interface RegisterData {
   firstname: string;
   lastname: string;
   phone: number;
+  zipcode: number;
+  city: string;
 }
 
 // auth context
@@ -39,6 +42,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }
 
   const [user, setUser] = useState<User | null>(initialUser);
+  const navigate = useNavigate();
 
   const login = async (email: string, password: string) => {
     const res = await fetch(`${API_URL}/login`, {
@@ -88,6 +92,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     Cookies.remove('user');
 
     setUser(null);
+    navigate('/login');
   };
 
   return (

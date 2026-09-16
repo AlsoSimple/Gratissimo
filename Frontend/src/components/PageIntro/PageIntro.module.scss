@@ -1,0 +1,31 @@
+@use '../../style/Globals' as *;
+
+.intro {
+  background-color: $alt-white;
+  padding: 3.5rem 8%;
+  text-align: center;
+}
+
+.title {
+  font-family: $font-primary;
+  font-weight: 400;
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+}
+
+.text {
+  max-width: 560px;
+  margin: 0 auto 2rem;
+  font-size: 0.9rem;
+}
+
+// Mobile
+@media (max-width: 800px) {
+  .intro {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+}

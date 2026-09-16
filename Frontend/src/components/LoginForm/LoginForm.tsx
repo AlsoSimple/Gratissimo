@@ -34,7 +34,7 @@ export const LoginForm = () => {
 
     try {
       await login(email, password);
-      navigate('/');
+      navigate('/profile');
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
