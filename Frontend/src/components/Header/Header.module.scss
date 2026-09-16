@@ -56,6 +56,15 @@
   font-weight: 700;
 }
 
+.mobileButton {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
 // Mobile
 @media (max-width: 800px) {
   .bar {

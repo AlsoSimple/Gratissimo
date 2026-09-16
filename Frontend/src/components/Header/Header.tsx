@@ -9,9 +9,15 @@ interface NavLinkItem {
   label: string;
 }
 
+interface UserLinkItem {
+  to?: string;
+  label: string;
+  onClick?: () => void;
+}
+
 interface HeaderProps {
   navLinks: NavLinkItem[];
-  userLinks: NavLinkItem[];
+  userLinks: UserLinkItem[];
 }
 
 export const Header = ({ navLinks, userLinks }: HeaderProps) => {
@@ -46,7 +52,11 @@ export const Header = ({ navLinks, userLinks }: HeaderProps) => {
           <ul className={`${styles.mobileLinks} ${styles.mobileUserLinks}`}>
             {userLinks.map((link) => (
               <li key={link.label}>
-                <Link to={link.to} onClick={toggleMenu}>{link.label}</Link>
+                {link.to ? (
+                  <Link to={link.to} onClick={toggleMenu}>{link.label}</Link>
+                ) : (
+                  <button type="button" onClick={link.onClick} className={styles.mobileButton}>{link.label}</button>
+                )}
               </li>
             ))}
           </ul>

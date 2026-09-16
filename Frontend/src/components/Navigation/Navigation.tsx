@@ -7,9 +7,15 @@ interface NavLinkItem {
   end?: boolean;
 }
 
+interface UserLinkItem {
+  to?: string;
+  label: string;
+  onClick?: () => void;
+}
+
 interface NavigationProps {
   navLinks: NavLinkItem[];
-  userLinks: NavLinkItem[];
+  userLinks: UserLinkItem[];
 }
 
 export const Navigation = ({ navLinks, userLinks }: NavigationProps) => {
@@ -34,9 +40,15 @@ export const Navigation = ({ navLinks, userLinks }: NavigationProps) => {
       <ul className={styles.userLinks}>
         {userLinks.map((link) => (
           <li key={link.label}>
-            <Link to={link.to} className={styles.userLink}>
-              {link.label}
-            </Link>
+            {link.to ? (
+              <Link to={link.to} className={styles.userLink}>
+                {link.label}
+              </Link>
+            ) : (
+              <button type="button" onClick={link.onClick} className={styles.userLink}>
+                {link.label}
+              </button>
+            )}
           </li>
         ))}
       </ul>

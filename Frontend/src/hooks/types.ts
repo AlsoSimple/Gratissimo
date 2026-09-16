@@ -48,3 +48,15 @@ export interface Testimony {
   title: string;
   content: string;
 }
+
+export interface User {
+  id: number;
+  firstname: string;
+  lastname: string;
+}
+
+export interface LoginResponse {
+  accessToken: string;
+  refreshToken: string;
+  user: User;
+}

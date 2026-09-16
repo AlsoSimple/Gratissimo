@@ -1,0 +1,58 @@
+@use '../../style/Globals' as *;
+
+.form {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.title {
+  font-family: $font-primary;
+  font-weight: 400;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.input {
+  padding: 0.6rem 0.75rem;
+  background-color: $alt-white;
+  border: 1px solid rgba($black, 0.15);
+  border-radius: 6px;
+  font-size: 0.85rem;
+
+  &::placeholder {
+    color: #9a9a9a;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: rgba($black, 0.4);
+  }
+}
+
+.submit {
+  margin-top: 1.5rem;
+  padding: 0.5rem;
+  width: 100%;
+}
+
+.switch {
+  color: $main;
+  font-size: 0.9rem;
+}
+
+.error {
+  color: $main;
+  font-size: 0.9rem;
+}
