@@ -1,8 +1,6 @@
 @use '../../style/Globals' as *;
 
 .button {
-  background-color: $accent;
-  color: $white;
   border: none;
   border-radius: 20px;
   padding: 0.6rem 2rem;
@@ -15,4 +13,16 @@
   &:hover {
     opacity: 0.9;
   }
+}
+
+.primary {
+  background-color: $accent;
+  color: $white;
+}
+
+.outline {
+  background-color: #ffffff;
+  color: $black;
+  border: 1px solid rgba($black, 0.3);
+  font-weight: 400;
 }

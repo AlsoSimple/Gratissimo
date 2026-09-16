@@ -5,13 +5,14 @@ interface ButtonProps {
   children: ReactNode;
   onClick?: () => void;
   type?: 'button' | 'submit';
+  variant?: 'primary' | 'outline';
   className?: string;
 }
 
-export function Button({ children, onClick, type = 'button', className }: ButtonProps) {
+export function Button({ children, onClick, type = 'button', variant = 'primary', className }: ButtonProps) {
   return (
     <button
-      className={`${styles.button} ${className || ''}`}
+      className={`${styles.button} ${styles[variant]} ${className || ''}`}
       onClick={onClick}
       type={type}
     >

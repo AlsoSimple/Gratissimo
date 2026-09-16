@@ -1,0 +1,112 @@
+@use '../../style/Globals' as *;
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1.5rem 3rem 1.5rem 3rem;
+  background-color: #ffffff;
+  border: 1px solid rgba($black, 0.2);
+  border-radius: 8px;
+}
+
+.open {
+  border-color: rgba($black, 0.5);
+}
+
+.info {
+  flex: 1;
+  max-width: 600px;
+}
+
+.organization {
+  display: block;
+  font-size: 0.75rem;
+  color: #8a8a8a;
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  font-family: $font-primary;
+  font-weight: 400;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.description {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  // max 3 lines
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.side {
+  width: 220px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 1.25rem;
+  font-size: 0.85rem;
+}
+
+.heart {
+  width: 14px;
+}
+
+// open card
+.category {
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.heading {
+  font-family: $font-primary;
+  font-weight: 600;
+  font-size: 0.8rem;
+  margin-bottom: 0.25rem;
+}
+
+.text {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+  font-size: 0.8rem;
+}
+
+// Mobile
+@media (max-width: 800px) {
+  .card {
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1.25rem;
+  }
+
+  .side {
+    width: 100%;
+  }
+}
