@@ -60,3 +60,10 @@ export interface LoginResponse {
   refreshToken: string;
   user: User;
 }
+
+export interface Favorite {
+  id: number;
+  userId: number;
+  jobListingId: number;
+  jobListing: JobListing;
+}

@@ -1,5 +1,27 @@
 @use '../../style/Globals' as *;
 
+.hint {
+  color: $main;
+  font-size: 0.9rem;
+  text-decoration: underline;
+}
+
 .page {
-  padding: 2rem 8%;
+  padding: 3rem 8% 4rem;
+}
+
+.message {
+  text-align: center;
+
+  a {
+    color: $main;
+    text-decoration: underline;
+  }
+}
+
+// Mobile
+@media (max-width: 800px) {
+  .page {
+    padding: 2rem 1.5rem 3rem;
+  }
 }

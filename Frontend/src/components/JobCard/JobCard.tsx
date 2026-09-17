@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
 import type { JobListing } from '../../hooks/types';
 import { formatDateWithYear } from '../../utils/formatDate';
 import { Button } from '../Button/Button';
@@ -7,10 +9,27 @@ import styles from './JobCard.module.scss';
 
 interface JobCardProps {
   job: JobListing;
+  onDelete?: (id: number) => void;
 }
 
-export function JobCard({ job }: JobCardProps) {
+export function JobCard({ job, onDelete }: JobCardProps) {
+  const { user, favorites, addFavorite, removeFavorite } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
+  const [showLoginHint, setShowLoginHint] = useState(false);
+
+  const isSaved = favorites.some((favorite) => favorite.jobListingId === job.id);
+
+  const handleSave = () => {
+    if (!user) {
+      setShowLoginHint(true);
+      return;
+    }
+    if (isSaved) {
+      removeFavorite(job.id);
+    } else {
+      addFavorite(job.id);
+    }
+  };
 
   return (
     <article className={isOpen ? `${styles.card} ${styles.open}` : styles.card}>
@@ -47,10 +66,20 @@ export function JobCard({ job }: JobCardProps) {
           </>
         )}
 
+        {showLoginHint && (
+          <span className={styles.hint}>
+            <Link to="/login">Log ind</Link> for at gemme jobs
+          </span>
+        )}
+
         <div className={styles.buttons}>
-          <Button variant="outline" className={styles.button}>
-            Gem <img src={heart} alt="hjerte" className={styles.heart} />
-          </Button>
+          {onDelete ? (
+            <Button className={styles.button} onClick={() => onDelete(job.id)}>Slet</Button>
+          ) : (
+            <Button variant="outline" className={styles.button} onClick={handleSave}>
+              {isSaved ? 'Fjern' : 'Gem'} <img src={heart} alt="hjerte" className={styles.heart} />
+            </Button>
+          )}
           <Button variant="outline" className={styles.button} onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? 'Luk' : 'Åben'}
           </Button>
