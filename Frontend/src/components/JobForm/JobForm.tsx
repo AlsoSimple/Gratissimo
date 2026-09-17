@@ -4,14 +4,19 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { AuthContext } from '../../context/AuthContext';
 import { useFetch } from '../../hooks/useFetch';
-import type { JobCategory, Region, WorkType } from '../../hooks/types';
+import type { JobCategory, Region, WorkType, JobListing } from '../../hooks/types';
 import { API_URL } from '../../utils/api';
 import { isZipcode } from '../../utils/validation';
 import { Button } from '../Button/Button';
 import chevron from '../../assets/icons/icons8-chevron-30.png';
 import styles from './JobForm.module.scss';
 
-export const JobForm = () => {
+interface JobFormProps {
+  job?: JobListing;
+}
+
+// creates/edits job if prop is passed
+export const JobForm = ({ job }: JobFormProps) => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const regions = useFetch<Region[]>(`${API_URL}/regions`);
@@ -76,8 +81,8 @@ export const JobForm = () => {
       return;
     }
 
-    const res = await fetch(`${API_URL}/job-listings`, {
-      method: 'POST',
+    const res = await fetch(job ? `${API_URL}/job-listings/${job.id}` : `${API_URL}/job-listings`, {
+      method: job ? 'PUT' : 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${Cookies.get('accessToken')}`,
@@ -111,18 +116,18 @@ export const JobForm = () => {
         <div className={styles.left}>
           <label className={styles.field}>
             Overskrift
-            <input type="text" name="title" placeholder="Eks. Mågejæger søges..." className={styles.input} />
+            <input type="text" name="title" placeholder="Eks. Mågejæger søges..." defaultValue={job?.title} className={styles.input} />
           </label>
 
           <label className={styles.field}>
             Organisation / forening
-            <input type="text" name="organization" placeholder="Skriv din forening her..." className={styles.input} />
+            <input type="text" name="organization" placeholder="Skriv din forening her..." defaultValue={job?.organization} className={styles.input} />
           </label>
 
           <label className={styles.field}>
             Kategori
             <span className={styles.selectWrap}>
-              <select name="jobCategoryId" className={styles.select}>
+              <select name="jobCategoryId" defaultValue={job?.jobCategoryId} className={styles.select}>
                 <option value="">Vælg kategori...</option>
                 {categories.data?.map((category) => (
                   <option key={category.id} value={category.id}>{category.name}</option>
@@ -135,7 +140,7 @@ export const JobForm = () => {
           <label className={styles.field}>
             Arbejdstid
             <span className={styles.selectWrap}>
-              <select name="workTypeId" className={styles.select}>
+              <select name="workTypeId" defaultValue={job?.workTypeId} className={styles.select}>
                 <option value="">Vælg arbejdstid...</option>
                 {workTypes.data?.map((workType) => (
                   <option key={workType.id} value={workType.id}>{workType.type}</option>
@@ -148,7 +153,7 @@ export const JobForm = () => {
           <label className={styles.field}>
             Hjemmearbejde
             <span className={styles.selectWrap}>
-              <select name="workHome" className={styles.select}>
+              <select name="workHome" defaultValue={job?.workHome} className={styles.select}>
                 <option value="">Vælg hjemmearbejde...</option>
                 <option value="On-site">On-site</option>
                 <option value="Remote">Remote</option>
@@ -161,7 +166,7 @@ export const JobForm = () => {
           <label className={styles.field}>
             Lokation
             <span className={styles.selectWrap}>
-              <select name="regionId" className={styles.select}>
+              <select name="regionId" defaultValue={job?.regionId} className={styles.select}>
                 <option value="">Vælg lokation...</option>
                 {regions.data?.map((region) => (
                   <option key={region.id} value={region.id}>{region.name}</option>
@@ -173,17 +178,17 @@ export const JobForm = () => {
 
           <label className={styles.field}>
             By
-            <input type="text" name="city" placeholder="Eks. Aalborg SV" className={styles.input} />
+            <input type="text" name="city" placeholder="Eks. Aalborg SV" defaultValue={job?.city} className={styles.input} />
           </label>
 
           <label className={styles.field}>
             Postnummer
-            <input type="text" name="zipcode" placeholder="Eks. 9200" className={styles.input} />
+            <input type="text" name="zipcode" placeholder="Eks. 9200" defaultValue={job?.zipcode} className={styles.input} />
           </label>
 
           <label className={styles.field}>
             Adresse
-            <input type="text" name="address" placeholder="Eks. Holmegade 22, 1. sal" className={styles.input} />
+            <input type="text" name="address" placeholder="Eks. Holmegade 22, 1. sal" defaultValue={job?.address} className={styles.input} />
           </label>
         </div>
 
@@ -193,6 +198,7 @@ export const JobForm = () => {
             <textarea
               name="description"
               placeholder="Her kan du beskrive jobbet, hvilke erfaringer der kræves og hvad der forventes af den frivillige..."
+              defaultValue={job?.description}
               className={styles.textarea}
             />
           </label>
@@ -201,7 +207,7 @@ export const JobForm = () => {
 
       {error && <p className={styles.error}>{error}</p>}
 
-      <Button type="submit" className={styles.submit}>Opret annonce</Button>
+      <Button type="submit" className={styles.submit}>{job ? 'Gem ændringer' : 'Opret annonce'}</Button>
     </form>
   );
 };

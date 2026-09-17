@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import type { JobListing } from '../../hooks/types';
 import { formatDateWithYear } from '../../utils/formatDate';
@@ -14,6 +14,7 @@ interface JobCardProps {
 
 export function JobCard({ job, onDelete }: JobCardProps) {
   const { user, favorites, addFavorite, removeFavorite } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [showLoginHint, setShowLoginHint] = useState(false);
 
@@ -74,7 +75,10 @@ export function JobCard({ job, onDelete }: JobCardProps) {
 
         <div className={styles.buttons}>
           {onDelete ? (
-            <Button className={styles.button} onClick={() => onDelete(job.id)}>Slet</Button>
+            <>
+              <Button className={styles.button} onClick={() => onDelete(job.id)}>Slet</Button>
+              <Button variant="outline" className={styles.button} onClick={() => navigate(`/edit-job/${job.id}`)}>Rediger</Button>
+            </>
           ) : (
             <Button variant="outline" className={styles.button} onClick={handleSave}>
               {isSaved ? 'Fjern' : 'Gem'} <img src={heart} alt="hjerte" className={styles.heart} />
