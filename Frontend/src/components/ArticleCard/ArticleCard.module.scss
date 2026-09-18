@@ -3,7 +3,7 @@
 .card {
   display: block;
   height: 100%;
-  background-color: #ffffff;
+  background-color: $white;
   border: 1px solid rgba($black, 0.3);
   box-shadow: 0 0 0 1px rgba($black, 0.3); // outer 1px ring
   border-radius: 10px;

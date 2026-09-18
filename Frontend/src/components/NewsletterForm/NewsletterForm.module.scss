@@ -15,7 +15,7 @@
   flex: 1;
   padding: 0 0.75rem;
   background-color: $white;
-  color: #7a7a7a;
+  color: rgba($black, 0.5);
 }
 
 .icon {
@@ -39,7 +39,7 @@
   font-size: 0.95rem;
 
   &::placeholder {
-    color: #7a7a7a;
+    color: rgba($black, 0.5);
   }
 
   &:focus {

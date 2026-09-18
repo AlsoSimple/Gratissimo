@@ -5,7 +5,7 @@
   justify-content: space-between;
   gap: 2rem;
   padding: 1.5rem 3rem 1.5rem 3rem;
-  background-color: #ffffff;
+  background-color: $white;
   border: 1px solid rgba($black, 0.2);
   border-radius: 8px;
 }
@@ -22,7 +22,7 @@
 .organization {
   display: block;
   font-size: 0.75rem;
-  color: #8a8a8a;
+  color: rgba($black, 0.5);
   margin-bottom: 0.5rem;
 }
 
@@ -54,7 +54,8 @@
 
 .buttons {
   display: flex;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
   margin-top: auto;
   padding-top: 1rem;
 }

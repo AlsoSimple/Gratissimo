@@ -36,7 +36,7 @@
   font-size: 0.85rem;
 
   &::placeholder {
-    color: #9a9a9a;
+    color: rgba($black, 0.5);
   }
 
   &:focus {
@@ -87,7 +87,7 @@
   resize: none;
 
   &::placeholder {
-    color: #9a9a9a;
+    color: rgba($black, 0.5);
   }
 
   &:focus {
